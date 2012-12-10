@@ -2,6 +2,10 @@ grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+
+if (Environment.current == Environment.DEVELOPMENT){
+    grails.plugin.location.'quartz' = "../grails-quartz"
+}
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -25,12 +29,11 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
     plugins {
-        build(":release:2.0.2") {
+        build(":release:2.2.0") {
             export = false
         }
-        runtime ':quartz:0.4.2'
-        compile ':quartz:0.4.2'
-        compile(':rest-client-builder:1.0.2') {
+        
+        compile(':rest-client-builder:1.0.3') {
             export = false
         }
         compile(":hibernate:$grailsVersion") {
